@@ -1,60 +1,18 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addItem } from '../redux/slices/goodsSlice';
+import { useState } from "react";
+import Form from "./Form";
 
-const AddProduct = () => {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [available, setAvailable] = useState(true);
+function AddButton() {
+    const [value, setValue] = useState('none');
+    const handleClick = () => { 
+        setValue(value === 'none' ? 'block' : 'none');
+     }
 
-  const dispatch = useDispatch();
+    return ( 
+        <>
+        <button onClick={handleClick} style={{marginTop: '50px'}}>{value === 'none' ? 'Add Product' : 'Close'}</button>
+        <Form iDisplay={value} />
+        </>
+     );
+}
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(
-      addItem({ name, description, price: parseFloat(price), available }),
-    );
-    setName("");
-    setDescription("");
-    setPrice("");
-    setAvailable(true);
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Product Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        required
-      />
-      <input
-        type="text"
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        required
-      />
-      <input
-        type="number"
-        placeholder="Price"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
-        required
-      />
-      <label style={{fontSize: "18px", display: 'block', margin: '20px'}}>
-        Available:
-        <input
-          type="checkbox"
-          checked={available}
-          onChange={(e) => setAvailable(e.target.checked)}
-        />
-      </label>
-      <button type="submit">Add Product</button>
-    </form>
-  );
-};
-
-export default AddProduct;
+export default AddButton;
