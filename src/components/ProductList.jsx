@@ -1,10 +1,14 @@
 import { useSelector, useDispatch } from "react-redux";
-import { removeItem, toggleAvailability, updateItem } from "../redux/slices/goodsSlice";
+import { removeItem, toggleAvailability} from "../redux/slices/goodsSlice";
 
 
 const ProductList = () => {
   const { items } = useSelector((state) => state.goods);
   const dispatch = useDispatch();
+
+  const handlerUpdate = () => { 
+    
+   };
 
   return (
     <div>
@@ -25,9 +29,10 @@ const ProductList = () => {
               <button onClick={() => dispatch(toggleAvailability(id))}>
                 Toggle Availability
               </button>
-              <button onClick={() => dispatch(updateItem(id))}>
+              <button onClick={handlerUpdate}>
                 Update Product
               </button>
+
             </li>
           ))}
         </ul>
