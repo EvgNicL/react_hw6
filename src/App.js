@@ -4,6 +4,7 @@ import AddProduct from './components/AddProduct';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import ProductList from './components/ProductList';
+import { Modal } from './components/Modal';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Provider store={store}>
           <AddProduct />
           <ProductList />
+          <Modal />
         </Provider>
 
       </header>

@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { removeItem, toggleAvailability} from "../redux/slices/goodsSlice";
+import { toggleModal } from "../redux/slices/modalSlice";
 
 
 const ProductList = () => {
@@ -7,7 +8,7 @@ const ProductList = () => {
   const dispatch = useDispatch();
 
   const handlerUpdate = () => { 
-    
+    dispatch(toggleModal());
    };
 
   return (
