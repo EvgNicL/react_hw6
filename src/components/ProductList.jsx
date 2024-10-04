@@ -5,10 +5,12 @@ import { toggleModal } from "../redux/slices/modalSlice";
 
 const ProductList = () => {
   const { items } = useSelector((state) => state.goods);
+
   const dispatch = useDispatch();
 
-  const handlerUpdate = () => { 
-    dispatch(toggleModal());
+  const handlerUpdate = (id) => { 
+    dispatch(toggleModal(id));
+
    };
 
   return (
@@ -30,7 +32,7 @@ const ProductList = () => {
               <button onClick={() => dispatch(toggleAvailability(id))}>
                 Toggle Availability
               </button>
-              <button onClick={handlerUpdate}>
+              <button onClick={() => handlerUpdate(id)}>
                 Update Product
               </button>
 

@@ -1,24 +1,33 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { updateItem } from "../redux/slices/goodsSlice";
 import { toggleModal } from "../redux/slices/modalSlice";
 
 export const Modal = () => {
-  const { modalDisplay } = useSelector((state) => state.modal);
+  const { modalDisplay, data } = useSelector((state) => state.modal);
+  // const { items } = useSelector((state) => state.goods);
 
-  const [id, setId] = useState()
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState();
+  const [id, setId] = useState();
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [price, setPrice] = useState('');
   const [available, setAvailable] = useState(true);
-
   const dispatch = useDispatch();
 
-  const handleSubmit = () => {
+  useEffect(() => {
+    setId(data.id)
+    // const item = items.find(item => item.id === id);
+    // console.log(item);
+    // setName(item.name);
+    // setDescription(item.description);
+    // setPrice(item.price);
+    // setAvailable(item.available);
+  }, []);
 
-    // dispatch(
-    //   updateItem({ id, name, description, price: parseFloat(price), available })
-    // );
+  const handleSubmit = () => {
+    dispatch(
+      updateItem({ name, description, price: parseFloat(price), available })
+    );
     dispatch(toggleModal());
   };
 

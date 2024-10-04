@@ -15,7 +15,9 @@ export const modalSlice = createSlice({
     reducers: {
         toggleModal: (state, action) => {
             state.modalDisplay.display = state.modalDisplay.display === 'none' ? 'block' : 'none';
-            // state.data.id = action.payload;
+            if (action.payload) {
+                state.data.id = action.payload;
+            };
         },
     },
 });
